@@ -9,6 +9,7 @@ This project demonstrates full-stack web development by integrating a modern Rea
 The application follows best practices in API design, authentication, and component-based frontend architecture.
 
 🚀 Tech Stack
+
 🔹 Frontend
 
 React
@@ -40,6 +41,7 @@ dotenv
 CORS
 
 ✨ Core Features
+
 🔐 Authentication System
 
 User Registration
