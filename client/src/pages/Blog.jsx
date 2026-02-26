@@ -20,28 +20,6 @@ const Blog = () => {
 
     const { id } = useParams()
 
-const fetchBlogData = async () => {
-    try {
-    const { data } = await axios.get(`/api/blog/${id}`)
-    data.success ? setData(data.blog) : toast.error(data.message)
-    } catch (error) {
-    toast.error(error.message)
-    }
-}
-
-    const fetchComments = async () => {
-    try {
-        const {data} = await axios.get(`/api/blog/comments/${id}`)
-        if(data.success){
-            SetComments(data.comments)
-        }else {
-            toast.error(data.message);
-        }
-    } catch (error) {
-        toast.error(error.message);
-    }
-    }
-
     const addComment = async (e) => {
     e.preventDefault();
     try {
@@ -59,9 +37,31 @@ const fetchBlogData = async () => {
     }
 
     useEffect(() => {
-    fetchBlogData()
-    fetchComments()
-}, [id])
+        const fetchBlogData = async () => {
+            try {
+            const { data } = await axios.get(`/api/blog/${id}`)
+            data.success ? setData(data.blog) : toast.error(data.message)
+            } catch (error) {
+            toast.error(error.message)
+            }
+        }
+
+        const fetchComments = async () => {
+            try {
+                const {data} = await axios.get(`/api/blog/comments/${id}`)
+                if(data.success){
+                    SetComments(data.comments)
+                }else {
+                    toast.error(data.message);
+                }
+            } catch (error) {
+                toast.error(error.message);
+            }
+        }
+
+        fetchBlogData()
+        fetchComments()
+    }, [id, axios])
 
 return data ? (
     <div className='relative'>
