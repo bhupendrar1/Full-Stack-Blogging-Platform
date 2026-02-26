@@ -6,7 +6,6 @@ import toast from 'react-hot-toast';
 import {parse} from 'marked'
 
 
-
 const AddBlog = () => {
 
   const {axios} = useAppContext()
@@ -40,7 +39,6 @@ const AddBlog = () => {
             setLoading(false)
           }
   }
-
 
 
   const onSubmitHandler = async (e) => {
