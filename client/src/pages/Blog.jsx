@@ -31,7 +31,7 @@ const fetchBlogData = async () => {
 
     const fetchComments = async () => {
     try {
-        const {data} = await axios.post('/api/blog/comments', { blogId: id })
+        const {data} = await axios.get(`/api/blog/comments/${id}`)
         if(data.success){
             SetComments(data.comments)
         }else {
