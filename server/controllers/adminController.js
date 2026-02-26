@@ -22,7 +22,7 @@ export const adminLogin = async (req, res) => {
 
 export const getAllBlogsAdmin = async (req, res) => {
     try {
-        const blogs = await Blog.find({}).sort({createAt: -1});
+        const blogs = await Blog.find({}).sort({createdAt: -1});
         res.json({success: true, blogs})
     } catch (error) {
         res.json({success: false, message: error.message})
@@ -32,8 +32,8 @@ export const getAllBlogsAdmin = async (req, res) => {
 
 export const getAllComments  = async (req, res) => {
     try {
-        const comments = (await Comment.find({}).populate("blog")).toSorted({createAt: 
-            -1})
+        const comments = (await Comment.find({}).populate("blog").sort({createdAt: 
+            -1}))
             res.json({success: true, comments})
     } catch (error) {
         res.json({success: false, message: error.message})
@@ -43,7 +43,7 @@ export const getAllComments  = async (req, res) => {
 
 export const getDashboard = async (req, res) => {
     try {
-        const recentBlogs = (await Blog.find({})).Sort({ createAt: -1 }).limit(5);
+        const recentBlogs = await Blog.find({}).sort({ createdAt: -1 }).limit(5);
         const blogs = await Blog.countDocuments();
         const comments = await Comment.countDocuments()
         const drafts = await Blog.countDocuments({isPublished: false})
@@ -72,7 +72,7 @@ try {
     export const approveCommentById = async (req, res) => {
     try {
         const {id} = req.body;
-        await Comment.findByIdAndDelete(id, {isApproved: true});
+        await Comment.findByIdAndUpdate(id, {isApproved: true});
         res.json({success: true, message: "Comment Approved successfully" })
     } catch (error) {
         res.json({success: false, message: error.message})

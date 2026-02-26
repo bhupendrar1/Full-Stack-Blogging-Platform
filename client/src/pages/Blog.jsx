@@ -20,14 +20,14 @@ const Blog = () => {
 
     const { id } = useParams()
 
- const fetchBlogData = async () => {
+const fetchBlogData = async () => {
     try {
     const { data } = await axios.get(`/api/blog/${id}`)
     data.success ? setData(data.blog) : toast.error(data.message)
     } catch (error) {
     toast.error(error.message)
     }
-  }
+}
 
     const fetchComments = async () => {
     try {
@@ -89,7 +89,7 @@ return data ? (
 
             {/* {comment section} */}
             <div className='mt-15 mb-10 max-w-3xl mx-auto'>
-        <p className='font-semibold mb-4'>Comments{comments.length}</p>
+<p className='font-semibold mb-4'>Comments ({comments.length})</p>
 
         <div className='flex flex-col gap-4'>
         {comments.map((item, index) => (

@@ -1,13 +1,13 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const BlogCard = ({ blog }) => {
   const { title, description, category, image, _id } = blog
+
   const navigate = useNavigate()
 
   return (
     <div
-      onClick={() => navigate(`/blog/${_id}`)}
+      onClick={() => navigate(`/blog/${blog._id}`)}
       className="w-full rounded-lg overflow-hidden shadow
       hover:scale-102 hover:shadow-primary/25 duration-300 cursor-pointer"
     >
@@ -21,12 +21,11 @@ const BlogCard = ({ blog }) => {
       <div className="p-5">
         <h5 className="mb-2 font-medium text-gray-900">{title}</h5>
 
-        <p
+<p
           className="mb-3 text-xs text-gray-600"
-          dangerouslySetInnerHTML={{
-            __html: description.slice(0, 80),
-          }}
-        />
+        >
+          {description.replace(/<[^>]*>/g, '').slice(0, 80)}...
+        </p>
       </div>
     </div>
   )

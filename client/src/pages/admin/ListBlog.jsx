@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import BlogTableItem from '../../components/admin/BlogTableItem';
 import { useAppContext } from '../../context/AppContext';
 import toast from 'react-hot-toast';
@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 const ListBlog = () => {
 
   const [blogs, setBlogs] = useState([]);
-  const {axios} = useAppContext
+const {axios} = useAppContext()
 
   const fetchBlogs = async () => {
       try {
@@ -57,3 +57,5 @@ const ListBlog = () => {
 }
 
 export default ListBlog
+
+

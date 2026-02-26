@@ -25,15 +25,17 @@ try {
 }
 }
 
-useEffect(()=>{
-    fetchBlogs()
+useEffect(() => {
+        if (token) {
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        } else {
+            delete axios.defaults.headers.common['Authorization'];
+        }
+    }, [token]);
 
-    const token = localStorage.getItem('token')
-    if(token) {
-        setToken(token)
-        axios.defaults.headers.common['Authorization'] =  `${token}`;
-    }
-}, [])
+    useEffect(() => {
+        fetchBlogs();
+    }, []);
 
     const value = {
     axios,
@@ -56,3 +58,6 @@ useEffect(()=>{
 
 
 export const useAppContext = () => useContext(AppContext);
+
+
+
